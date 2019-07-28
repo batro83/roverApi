@@ -12,3 +12,7 @@ mars:
     x: 0
     y: 0
     direction: N
+  obstacles:
+    list:
+      - 2,2
+      - 3,3
