@@ -1,4 +1,4 @@
-package com.walla.rover.api.roverApi;
+package com.walla.rover.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

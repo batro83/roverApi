@@ -1,4 +1,4 @@
-package com.walla.rover.api.roverApi;
+package com.walla.rover.api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
