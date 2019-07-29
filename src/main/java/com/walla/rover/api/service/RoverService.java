@@ -53,15 +53,18 @@ public class RoverService {
 		}
 	}
 
-	public void right() {
+	public RoverPosition right(RoverPosition position, Bounds bounds) {
+		return position;
 
 	}
 
-	public void forward() {
+	public RoverPosition forward(RoverPosition position, Bounds bounds) {
+		return position;
 
 	}
 
-	public void backward() {
+	public RoverPosition backward(RoverPosition position, Bounds bounds) {
+		return position;
 
 	}
 	

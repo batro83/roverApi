@@ -26,22 +26,27 @@ public class MarsService {
 	public RoverPosition move(List<Character> movesList) {
 		for (Character move : movesList) {
 			switch (move.toString()) {
-			case Moves.LEFT:				
-				position = roverService.left(position, bounds);				
-				break;
-			case Moves.RIGHT:
-
-				break;
-			case Moves.FORWARD:
-
-				break;
-			case Moves.BACKWARD:
-
-				break;
-
-			default:
-				break;
+				case Moves.LEFT:				
+					position = roverService.left(position, bounds);				
+					break;
+				case Moves.RIGHT:
+					position = roverService.right(position, bounds);
+					break;
+				case Moves.FORWARD:
+					position = roverService.forward(position, bounds);
+					break;
+				case Moves.BACKWARD:
+					position = roverService.backward(position, bounds);
+					break;
+	
+				default:
+					break;
 			}
+			
+			// if we are in front of an obstacle don't continue, and show the obstacle position
+			if(position.getObstacle()!=null)
+				break;			
+
 		}
 		
 		return position;
