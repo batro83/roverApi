@@ -9,10 +9,14 @@ mars:
     min-y: 0
     max-y: 5
   initial-position:
-    x: 0
-    y: 0
+    x: 1
+    y: 1
     direction: N
   obstacles:
     list:
-      - 2,2
-      - 3,3
+      -
+        x: 2
+        y: 2
+      -
+        x: 3
+        y: 3

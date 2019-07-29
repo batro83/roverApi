@@ -6,29 +6,22 @@ import org.springframework.context.annotation.Configuration;
 
 import com.walla.rover.api.model.Bounds;
 import com.walla.rover.api.model.RoverPosition;
+import com.walla.rover.api.service.MarsService;
 
 @Configuration
 public class AppConfig {
 	
 	
 	@Bean
-    public Bounds bounds(@Value("${mars.bounds.min-x}") int minX,
+    public MarsService marsService(@Value("${mars.bounds.min-x}") int minX,
 	                       @Value("${mars.bounds.max-x}") int maxX,
 	                       @Value("${mars.bounds.min-y}") int minY,
 	                       @Value("${mars.bounds.max-y}") int maxY,
 	                       @Value("${mars.initial-position.x}") int x,
 	                       @Value("${mars.initial-position.y}") int y,
-	                       @Value("${mars.initial-position.direction}") char direction) {
-		
-        return new Bounds(minX, maxX, minY, maxY);
-    }
-	
-	@Bean
-    public RoverPosition roverPosition(@Value("${mars.initial-position.x}") int x,
-	                       @Value("${mars.initial-position.y}") int y,
 	                       @Value("${mars.initial-position.direction}") char facing) {
 		
-        return new RoverPosition(x, y, facing);
+        return new MarsService( Bounds.of(minX, maxX, minY, maxY), new RoverPosition(x, y, facing));
     }
 
 }
