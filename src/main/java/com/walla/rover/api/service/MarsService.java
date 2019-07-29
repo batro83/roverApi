@@ -2,19 +2,19 @@ package com.walla.rover.api.service;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.walla.rover.api.config.Obstacles;
 import com.walla.rover.api.model.Bounds;
 import com.walla.rover.api.model.RoverPosition;
 import com.walla.rover.api.utils.Moves;
 
 public class MarsService {
-
+	private static final Logger logger = LogManager.getLogger(MarsService.class);
 	private final Bounds bounds;
 	private RoverPosition position;
-	@Autowired
-	private Obstacles obstacles;
+	
 	@Autowired
 	private RoverService roverService;
 
@@ -24,11 +24,10 @@ public class MarsService {
 	}
 
 	public RoverPosition move(List<Character> movesList) {
-
 		for (Character move : movesList) {
 			switch (move.toString()) {
-			case Moves.LEFT:
-				position = roverService.left(position, bounds);
+			case Moves.LEFT:				
+				position = roverService.left(position, bounds);				
 				break;
 			case Moves.RIGHT:
 
@@ -44,7 +43,7 @@ public class MarsService {
 				break;
 			}
 		}
-
+		
 		return position;
 	}
 

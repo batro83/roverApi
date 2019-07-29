@@ -5,6 +5,7 @@ public class RoverPosition {
 	private int x;
     private int y;
     private final char facing;
+    private Obstacle obstacle;
     
     
 	public RoverPosition(int x, int y, char facing) {
@@ -23,7 +24,10 @@ public class RoverPosition {
 	
 	@Override
     public String toString() {
-        return String.format("(%d,%d,%s)", x, y, facing);
+		if(obstacle!=null)
+			return String.format("(%d,%d,%s) Obstacle(%d,%d)", x, y, facing, obstacle.getX(), obstacle.getY());
+		else
+			return String.format("(%d,%d,%s)", x, y, facing);
     }
 
 
@@ -48,6 +52,18 @@ public class RoverPosition {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+
+
+
+	public Obstacle getObstacle() {
+		return obstacle;
+	}
+
+
+
+	public void setObstacle(Obstacle obstacle) {
+		this.obstacle = obstacle;
 	}
     
 

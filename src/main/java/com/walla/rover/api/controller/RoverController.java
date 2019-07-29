@@ -1,7 +1,5 @@
 package com.walla.rover.api.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
