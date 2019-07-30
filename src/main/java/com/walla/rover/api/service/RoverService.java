@@ -20,6 +20,37 @@ public class RoverService {
 		RoverPosition prevPosition = new RoverPosition(position.getX(), position.getY(), position.getFacing());
 		
 		if(position.getFacing() == Facing.NORTH){
+			if(position.getX()>bounds.getMinX()+1)
+				position.setX(position.getX()-1);
+			else
+				position.setX(bounds.getMaxX());
+				
+		}else if(position.getFacing() == Facing.SOUTH){
+			if(position.getX()<bounds.getMaxX())
+				position.setX(position.getX()+1);
+			else
+				position.setX(bounds.getMinX()+1);
+						
+		} else if(position.getFacing() == Facing.EAST){
+			if(position.getY() < bounds.getMaxY())
+				position.setY(position.getY()+1);
+			else
+				position.setY(bounds.getMinY()+1);
+			
+		} else if(position.getFacing() == Facing.WEST){
+			if(position.getY()>bounds.getMinY()+1)
+				position.setY(position.getY() - 1);
+			else
+				position.setY(bounds.getMaxY());			
+		}
+		
+		return checkPositionObstacles(position, prevPosition);
+	}
+
+	public RoverPosition right(RoverPosition position, Bounds bounds) {
+		RoverPosition prevPosition = new RoverPosition(position.getX(), position.getY(), position.getFacing());
+		
+		if(position.getFacing() == Facing.NORTH){
 			if(position.getX()<bounds.getMaxX())
 				position.setX(position.getX()+1);
 			else
@@ -44,41 +75,88 @@ public class RoverService {
 				position.setY(bounds.getMinY()+1);			
 		}
 		
-		Obstacle obstacle = checkObstacles(position);
-		if(obstacle!=null){
-			prevPosition.setObstacle(obstacle);
-			return prevPosition;
-		}else{
-			return position;
-		}
-	}
-
-	public RoverPosition right(RoverPosition position, Bounds bounds) {
-		return position;
+		return checkPositionObstacles(position, prevPosition);
 
 	}
 
 	public RoverPosition forward(RoverPosition position, Bounds bounds) {
-		return position;
+		RoverPosition prevPosition = new RoverPosition(position.getX(), position.getY(), position.getFacing());
+		
+		if(position.getFacing() == Facing.NORTH){
+			if(position.getY()<bounds.getMaxY())
+				position.setY(position.getY()+1);
+			else
+				position.setY(bounds.getMinY()+1);
+				
+		}else if(position.getFacing() == Facing.SOUTH){
+			if(position.getY()>bounds.getMinY()+1)
+				position.setY(position.getY()-1);
+			else
+				position.setY(bounds.getMaxY());
+						
+		} else if(position.getFacing() == Facing.EAST){
+			if(position.getX() < bounds.getMaxX())
+				position.setX(position.getX()+1);
+			else
+				position.setX(bounds.getMinX()+1);
+			
+		} else if(position.getFacing() == Facing.WEST){
+			if(position.getX()>bounds.getMinX()+1)
+				position.setX(position.getX() - 1);
+			else
+				position.setX(bounds.getMaxX());			
+		}
+		
+		return checkPositionObstacles(position, prevPosition);
 
 	}
 
 	public RoverPosition backward(RoverPosition position, Bounds bounds) {
-		return position;
-
+		RoverPosition prevPosition = new RoverPosition(position.getX(), position.getY(), position.getFacing());
+		
+		if(position.getFacing() == Facing.NORTH){
+			if(position.getY()>bounds.getMinY()+1)
+				position.setY(position.getY()-1);
+			else
+				position.setY(bounds.getMaxY());
+				
+		}else if(position.getFacing() == Facing.SOUTH){
+			if(position.getY()<bounds.getMaxY())
+				position.setY(position.getY()+1);
+			else
+				position.setY(bounds.getMinY()+1);
+						
+		} else if(position.getFacing() == Facing.EAST){
+			if(position.getX() > bounds.getMinX()+1)
+				position.setX(position.getX()-1);
+			else
+				position.setX(bounds.getMaxX());
+			
+		} else if(position.getFacing() == Facing.WEST){
+			if(position.getX()<bounds.getMaxX())
+				position.setX(position.getX() + 1);
+			else
+				position.setX(bounds.getMinX()+1);			
+		}
+		
+		return checkPositionObstacles(position, prevPosition);
 	}
 	
 	
-	private Obstacle checkObstacles(RoverPosition position) {		
+	private RoverPosition checkPositionObstacles(RoverPosition position, RoverPosition prevPosition) {		
 		Obstacle checkObstacle = new Obstacle();
 		checkObstacle.setX(position.getX());
 		checkObstacle.setY(position.getY());
 		
-		boolean isObstacle = obstacles.getList().contains(checkObstacle);
-		if(!isObstacle)
-			checkObstacle=null;
+		boolean hasObstacle = obstacles.getList().contains(checkObstacle);
 		
-		return checkObstacle;
+		if(hasObstacle){
+			prevPosition.setObstacle(checkObstacle);
+			return prevPosition;
+		}else{
+			position.setObstacle(null);
+			return position;
+		}
 	}
 
 }
