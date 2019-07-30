@@ -11,6 +11,7 @@ import com.walla.rover.api.model.RoverPosition;
 import com.walla.rover.api.utils.Moves;
 
 public class MarsService {
+	
 	private static final Logger logger = LogManager.getLogger(MarsService.class);
 	private final Bounds bounds;
 	private RoverPosition position;

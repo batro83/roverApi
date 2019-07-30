@@ -21,27 +21,27 @@ public class RoverService {
 		
 		if(position.getFacing() == Facing.NORTH){
 			if(position.getX()<bounds.getMaxX())
-				position.setX(position.getX() + 1);
+				position.setX(position.getX()+1);
 			else
-				position.setX(1);
+				position.setX(bounds.getMinX()+1);
 				
 		}else if(position.getFacing() == Facing.SOUTH){
-			if(position.getX() == bounds.getMinX()+1)
-				position.setX(bounds.getMaxX());
+			if(position.getX()>bounds.getMinX()+1)
+				position.setX(position.getX()-1);
 			else
-				position.setX(position.getX() - 1);
+				position.setX(bounds.getMaxX());
 						
 		} else if(position.getFacing() == Facing.EAST){
-			if(position.getY() == bounds.getMinY()+1)
-				position.setY(bounds.getMaxY());
+			if(position.getY() > bounds.getMinY()+1)
+				position.setY(position.getY()-1);
 			else
-				position.setY(position.getY() - 1);
+				position.setY(bounds.getMaxY());
 			
 		} else if(position.getFacing() == Facing.WEST){
 			if(position.getY()<bounds.getMaxY())
 				position.setY(position.getY() + 1);
 			else
-				position.setY(1);			
+				position.setY(bounds.getMinY()+1);			
 		}
 		
 		Obstacle obstacle = checkObstacles(position);
