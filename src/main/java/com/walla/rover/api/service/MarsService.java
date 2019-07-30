@@ -26,7 +26,7 @@ public class MarsService {
 
 	public RoverPosition move(List<Character> movesList) {
 		for (Character move : movesList) {
-			switch (move.toString()) {
+			switch (move) {
 				case Moves.LEFT:				
 					position = roverService.left(position, bounds);				
 					break;
