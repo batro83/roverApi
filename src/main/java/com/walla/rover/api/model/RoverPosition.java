@@ -4,18 +4,20 @@ public class RoverPosition {
 	
 	private int x;
     private int y;
-    private final char facing;
+    private char facing;
     private Obstacle obstacle;
+        
     
-    
+	public RoverPosition() {
+		super();
+	}
+
 	public RoverPosition(int x, int y, char facing) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.facing = facing;
 	}
-
-
 
 	public char getFacing() {
 		return facing;
@@ -102,6 +104,12 @@ public class RoverPosition {
 		if (y != other.y)
 			return false;
 		return true;
+	}
+
+
+
+	public void setFacing(char facing) {
+		this.facing = facing;
 	}
     
 

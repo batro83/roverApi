@@ -12,16 +12,22 @@ import com.walla.rover.api.service.MarsService;
 public class AppConfig {
 	
 	
+		
 	@Bean
-    public MarsService marsService(@Value("${mars.bounds.min-x}") int minX,
+    public Bounds bounds(@Value("${mars.bounds.min-x}") int minX,
 	                       @Value("${mars.bounds.max-x}") int maxX,
 	                       @Value("${mars.bounds.min-y}") int minY,
-	                       @Value("${mars.bounds.max-y}") int maxY,
-	                       @Value("${mars.initial-position.x}") int x,
+	                       @Value("${mars.bounds.max-y}") int maxY) {
+		
+        return Bounds.of(minX, maxX, minY, maxY);
+    }
+	
+	@Bean
+    public RoverPosition roverPosition(@Value("${mars.initial-position.x}") int x,
 	                       @Value("${mars.initial-position.y}") int y,
 	                       @Value("${mars.initial-position.direction}") char facing) {
 		
-        return new MarsService( Bounds.of(minX, maxX, minY, maxY), new RoverPosition(x, y, facing));
+        return new RoverPosition(x, y, facing);
     }
 
 }
