@@ -65,6 +65,44 @@ public class RoverPosition {
 	public void setObstacle(Obstacle obstacle) {
 		this.obstacle = obstacle;
 	}
+
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + facing;
+		result = prime * result + ((obstacle == null) ? 0 : obstacle.hashCode());
+		result = prime * result + x;
+		result = prime * result + y;
+		return result;
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RoverPosition other = (RoverPosition) obj;
+		if (facing != other.facing)
+			return false;
+		if (obstacle == null) {
+			if (other.obstacle != null)
+				return false;
+		} else if (!obstacle.equals(other.obstacle))
+			return false;
+		if (x != other.x)
+			return false;
+		if (y != other.y)
+			return false;
+		return true;
+	}
     
 
 }

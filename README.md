@@ -11,5 +11,6 @@ Reading the exercise I chose to make rover moves as a service
 
 ##Improvements
 
+- Check init drop of rover
 - Make Obstacles final
 - Maybe try to refactor roverService and split it in one class per move, to be more readable.

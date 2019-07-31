@@ -42,7 +42,38 @@ public class Bounds {
 	
 	@Override
 	public String toString() {
-		return "Bounds [minX=" + minX + ", maxX=" + maxX + ", minY=" + minY + ", maxY=" + maxY + "]";
+		return "[minX=" + minX + ", maxX=" + maxX + ", minY=" + minY + ", maxY=" + maxY + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + maxX;
+		result = prime * result + maxY;
+		result = prime * result + minX;
+		result = prime * result + minY;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bounds other = (Bounds) obj;
+		if (maxX != other.maxX)
+			return false;
+		if (maxY != other.maxY)
+			return false;
+		if (minX != other.minX)
+			return false;
+		if (minY != other.minY)
+			return false;
+		return true;
 	}
 
 
