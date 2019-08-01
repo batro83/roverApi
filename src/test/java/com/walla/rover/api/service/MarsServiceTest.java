@@ -27,33 +27,44 @@ import com.walla.rover.api.utils.Moves;
 @SpringBootTest
 public class MarsServiceTest {
 		
-	@Autowired
-	private RoverPosition initialPosition ;
+//	@Spy
+//	private RoverPosition initialPosition ;
+//	
 	
-	@Autowired
-	private RoverService roverService;
+		
 	
-	@Autowired
-	private Bounds bounds;	
-	
+	@InjectMocks
 	private MarsService marsService;
 	
-	@Before
-	public void setUp() {
-		initialPosition = new RoverPosition(2, 2, Facing.SOUTH);
-		bounds = new Bounds(0, 10, 0, 10);
-		marsService = new MarsService(bounds, initialPosition);
-	}
+	@Mock
+	private Bounds bounds;	
 	
+	@Mock
+	private RoverPosition initialPosition;
+	
+	@Mock	
+	private RoverService roverService;
+		
 	
 
     @Test
     public void leftOneMoveTest() {
     	List<Character> movestList = Arrays.asList(Moves.LEFT);
-    	    	
+    	
+    	Mockito.doReturn(Bounds.of(0, 10, 0, 10)).when(bounds);
+    	Mockito.doReturn(0).when(bounds).getMinX();
+    	Mockito.doReturn(10).when(bounds).getMaxY();
+    	Mockito.doReturn(0).when(bounds).getMinY();
+    	
+    	
+    	Mockito.doReturn(1).when(initialPosition).getX();
+    	Mockito.doReturn(1).when(initialPosition).getY();
+    	
+    	Mockito.doReturn(new RoverPosition(10, 1, Facing.NORTH)).when(roverService).left(new RoverPosition(1, 1, Facing.NORTH),  Bounds.of(0, 10, 0, 10));
+    	
         final RoverPosition finalPosition = marsService.move(movestList);
 
-        Assert.assertEquals(new RoverPosition(5, 1, Facing.NORTH), finalPosition);
+        Assert.assertEquals(new RoverPosition(10, 1, Facing.NORTH), finalPosition);
     }
     
 

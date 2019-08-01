@@ -4,7 +4,7 @@ package com.walla.rover.api.model;
 
 public class Bounds {
 
-	private final int minX;
+	private int minX;
     private final int maxX;
     private final int minY;
     private final int maxY;
@@ -16,7 +16,7 @@ public class Bounds {
         this.maxY = maxY;
     }
     
-    public static Bounds of(int minX, int maxX, int minY, int maxY) {
+	public static Bounds of(int minX, int maxX, int minY, int maxY) {
         if (minX > maxX || minY > maxY) {
             throw new IllegalArgumentException("Min value > max value");
         }

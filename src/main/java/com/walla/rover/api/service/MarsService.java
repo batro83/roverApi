@@ -13,12 +13,13 @@ import com.walla.rover.api.utils.Moves;
 public class MarsService {
 	
 	@Autowired
-	private Bounds bounds;
+	private final Bounds bounds;
 	@Autowired
 	private RoverPosition position;	
 	@Autowired
 	private RoverService roverService;
 	
+	@Autowired
 	public MarsService(Bounds bounds, RoverPosition position) {
 		super();
 		this.bounds = bounds;
@@ -26,13 +27,12 @@ public class MarsService {
 	}
 
 
-
-
-
 	public RoverPosition move(List<Character> movesList) {
 		for (Character move : movesList) {
 			switch (move) {
-				case Moves.LEFT:				
+				case Moves.LEFT:	
+					
+					System.out.println(bounds.getMaxX());
 					position = roverService.left(position, bounds);				
 					break;
 				case Moves.RIGHT:
