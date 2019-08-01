@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 import com.walla.rover.api.model.Bounds;
 import com.walla.rover.api.model.RoverPosition;
-import com.walla.rover.api.service.MarsService;
 
 @Configuration
 public class AppConfig {

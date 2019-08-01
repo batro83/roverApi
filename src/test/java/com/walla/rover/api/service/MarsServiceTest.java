@@ -40,7 +40,7 @@ public class MarsServiceTest {
 	
 
     @Test
-    public void leftOneMoveFacingNorth_Test_Ok() {
+    public void moveLeftOneMoveFacingNorth_Test_Ok() {
     	List<Character> movestList = Arrays.asList(Moves.LEFT);
     	
     	Mockito.doReturn(10).when(bounds).getMaxX();
@@ -59,7 +59,7 @@ public class MarsServiceTest {
     }
     
     @Test
-    public void leftOneMoveFacingSouth_Test_Ok() {
+    public void moveLeftOneMoveFacingSouth_Test_Ok() {
     	List<Character> movestList = Arrays.asList(Moves.LEFT);
     	
     	Mockito.doReturn(10).when(bounds).getMaxX();
@@ -77,10 +77,10 @@ public class MarsServiceTest {
         Assert.assertEquals(new RoverPosition(10, 1, Facing.SOUTH), finalPosition);
     }
     
-    // TODO: TEst left in all facing cases
+    // TODO: TEst left in all facing cases, including with obstacles, and multiple moves
     
     @Test
-    public void rightOneMoveTest() {
+    public void moveRightOneMoveTest() {
     	List<Character> movestList = Arrays.asList(Moves.RIGHT);
     	
     	Mockito.doReturn(10).when(bounds).getMaxX();
@@ -98,11 +98,11 @@ public class MarsServiceTest {
         Assert.assertEquals(new RoverPosition(2, 1, Facing.NORTH), finalPosition);
     }
     
-    // TODO: TEst right in all facing cases
+    // TODO: TEst right in all facing cases, including with obstacles, and multiple moves
     
-    // TODO: TEst fordward in all facing cases
+    // TODO: TEst fordward in all facing cases, including with obstacles, and multiple moves
     
-    // TODO: TEst backward in all facing cases
+    // TODO: TEst backward in all facing cases, including with obstacles, and multiple moves
     
 
 }

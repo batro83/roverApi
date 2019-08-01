@@ -1,0 +1,22 @@
+
+server:
+  port: 8081
+  
+mars:
+  bounds:
+    min-x: 0
+    max-x: 10
+    min-y: 0
+    max-y: 10
+  initial-position:
+    x: 1
+    y: 1
+    direction: N
+  obstacles:
+    list:
+      -
+        x: 2
+        y: 2
+      -
+        x: 3
+        y: 3

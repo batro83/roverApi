@@ -31,7 +31,7 @@ public class RoverController {
     public ResponseEntity<String> move(@PathVariable("command") String command) {
 		
 		final List<Character> move = command.chars()
-			      .mapToObj(item -> (char) item)
+			      .mapToObj(item -> Character.toLowerCase((char) item))
 			      .collect(Collectors.toList());
 		logger.info("Moves list: {}", move.toString());
 		RoverPosition roverposition = marsService.move(move);
