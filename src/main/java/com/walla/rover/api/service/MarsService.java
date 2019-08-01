@@ -20,19 +20,18 @@ public class MarsService {
 	private RoverService roverService;
 	
 	@Autowired
-	public MarsService(Bounds bounds, RoverPosition position) {
+	public MarsService(Bounds bounds, RoverPosition position, RoverService roverService) {
 		super();
 		this.bounds = bounds;
 		this.position = position;
+		this.roverService = roverService;
 	}
 
 
 	public RoverPosition move(List<Character> movesList) {
 		for (Character move : movesList) {
 			switch (move) {
-				case Moves.LEFT:	
-					
-					System.out.println(bounds.getMaxX());
+				case Moves.LEFT:
 					position = roverService.left(position, bounds);				
 					break;
 				case Moves.RIGHT:

@@ -3,17 +3,15 @@ package com.walla.rover.api.service;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -26,13 +24,7 @@ import com.walla.rover.api.utils.Moves;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @SpringBootTest
 public class MarsServiceTest {
-		
-//	@Spy
-//	private RoverPosition initialPosition ;
-//	
-	
-		
-	
+			
 	@InjectMocks
 	private MarsService marsService;
 	
@@ -42,30 +34,75 @@ public class MarsServiceTest {
 	@Mock
 	private RoverPosition initialPosition;
 	
-	@Mock	
+	@Spy	
 	private RoverService roverService;
 		
 	
 
     @Test
-    public void leftOneMoveTest() {
+    public void leftOneMoveFacingNorth_Test_Ok() {
     	List<Character> movestList = Arrays.asList(Moves.LEFT);
     	
-    	Mockito.doReturn(Bounds.of(0, 10, 0, 10)).when(bounds);
+    	Mockito.doReturn(10).when(bounds).getMaxX();
     	Mockito.doReturn(0).when(bounds).getMinX();
     	Mockito.doReturn(10).when(bounds).getMaxY();
     	Mockito.doReturn(0).when(bounds).getMinY();
-    	
-    	
+    	    	
     	Mockito.doReturn(1).when(initialPosition).getX();
     	Mockito.doReturn(1).when(initialPosition).getY();
-    	
-    	Mockito.doReturn(new RoverPosition(10, 1, Facing.NORTH)).when(roverService).left(new RoverPosition(1, 1, Facing.NORTH),  Bounds.of(0, 10, 0, 10));
-    	
+
+		Mockito.doReturn(new RoverPosition(10, 1, Facing.NORTH)).when(roverService).left(Mockito.any(), Mockito.any());
+    	    	
         final RoverPosition finalPosition = marsService.move(movestList);
 
         Assert.assertEquals(new RoverPosition(10, 1, Facing.NORTH), finalPosition);
     }
+    
+    @Test
+    public void leftOneMoveFacingSouth_Test_Ok() {
+    	List<Character> movestList = Arrays.asList(Moves.LEFT);
+    	
+    	Mockito.doReturn(10).when(bounds).getMaxX();
+    	Mockito.doReturn(0).when(bounds).getMinX();
+    	Mockito.doReturn(10).when(bounds).getMaxY();
+    	Mockito.doReturn(0).when(bounds).getMinY();
+    	    	
+    	Mockito.doReturn(1).when(initialPosition).getX();
+    	Mockito.doReturn(1).when(initialPosition).getY();
+
+		Mockito.doReturn(new RoverPosition(10, 1, Facing.SOUTH)).when(roverService).left(Mockito.any(), Mockito.any());
+    	    	
+        final RoverPosition finalPosition = marsService.move(movestList);
+
+        Assert.assertEquals(new RoverPosition(10, 1, Facing.SOUTH), finalPosition);
+    }
+    
+    // TODO: TEst left in all facing cases
+    
+    @Test
+    public void rightOneMoveTest() {
+    	List<Character> movestList = Arrays.asList(Moves.RIGHT);
+    	
+    	Mockito.doReturn(10).when(bounds).getMaxX();
+    	Mockito.doReturn(0).when(bounds).getMinX();
+    	Mockito.doReturn(10).when(bounds).getMaxY();
+    	Mockito.doReturn(0).when(bounds).getMinY();
+    	    	
+    	Mockito.doReturn(1).when(initialPosition).getX();
+    	Mockito.doReturn(1).when(initialPosition).getY();
+
+		Mockito.doReturn(new RoverPosition(2, 1, Facing.NORTH)).when(roverService).right(Mockito.any(), Mockito.any());
+    	    	
+        final RoverPosition finalPosition = marsService.move(movestList);
+
+        Assert.assertEquals(new RoverPosition(2, 1, Facing.NORTH), finalPosition);
+    }
+    
+    // TODO: TEst right in all facing cases
+    
+    // TODO: TEst fordward in all facing cases
+    
+    // TODO: TEst backward in all facing cases
     
 
 }
