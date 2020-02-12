@@ -1,9 +1,10 @@
 package com.walla.rover.api.controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
+import static org.apache.logging.log4j.LogManager.getLogger;
 
-import org.apache.logging.log4j.LogManager;
+import java.util.List;
+
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,27 +16,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.walla.rover.api.model.RoverPosition;
 import com.walla.rover.api.service.MarsService;
 
-
-
-
 @RestController
 @RequestMapping("/mars")
 public class RoverController {
-	
-	private static final Logger logger = LogManager.getLogger(RoverController.class);
-	
+
+	private static final Logger logger = getLogger(RoverController.class);
+
 	@Autowired
-	private MarsService marsService; 
-		
+	private MarsService marsService;
+
 	@PostMapping(path = "/{command}")
-    public ResponseEntity<String> move(@PathVariable("command") String command) {
-		
+	public ResponseEntity<String> move(@PathVariable("command") String command) {
 		final List<Character> move = command.chars()
-			      .mapToObj(item -> Character.toLowerCase((char) item))
-			      .collect(Collectors.toList());
+				.mapToObj(item -> Character.toLowerCase((char) item))
+				.collect(toList());
 		logger.info("Moves list: {}", move.toString());
 		RoverPosition roverposition = marsService.move(move);
-        return ResponseEntity.ok(String.valueOf(roverposition));
-    }
-
+		return ResponseEntity.ok(String.valueOf(roverposition));
+	}
 }

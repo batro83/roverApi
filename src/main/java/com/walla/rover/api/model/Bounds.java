@@ -1,28 +1,26 @@
 package com.walla.rover.api.model;
 
-
-
 public class Bounds {
 
 	private int minX;
-    private final int maxX;
-    private final int minY;
-    private final int maxY;
+	private final int maxX;
+	private final int minY;
+	private final int maxY;
 
-    public Bounds(int minX, int maxX, int minY, int maxY) {
-        this.minX = minX;
-        this.maxX = maxX;
-        this.minY = minY;
-        this.maxY = maxY;
-    }
-    
+	public Bounds(int minX, int maxX, int minY, int maxY) {
+		this.minX = minX;
+		this.maxX = maxX;
+		this.minY = minY;
+		this.maxY = maxY;
+	}
+
 	public static Bounds of(int minX, int maxX, int minY, int maxY) {
-        if (minX > maxX || minY > maxY) {
-            throw new IllegalArgumentException("Min value > max value");
-        }
+		if (minX > maxX || minY > maxY) {
+			throw new IllegalArgumentException("Min value > max value");
+		}
 
-        return new Bounds(minX, maxX, minY, maxY);
-    }
+		return new Bounds(minX, maxX, minY, maxY);
+	}
 
 	public int getMinX() {
 		return minX;
@@ -38,8 +36,8 @@ public class Bounds {
 
 	public int getMaxY() {
 		return maxY;
-	} 
-	
+	}
+
 	@Override
 	public String toString() {
 		return "[minX=" + minX + ", maxX=" + maxX + ", minY=" + minY + ", maxY=" + maxY + "]";
@@ -75,6 +73,5 @@ public class Bounds {
 			return false;
 		return true;
 	}
-
 
 }

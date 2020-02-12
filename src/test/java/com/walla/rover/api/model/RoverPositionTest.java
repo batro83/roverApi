@@ -1,36 +1,36 @@
 package com.walla.rover.api.model;
 
-import org.junit.Assert;
+import static com.walla.rover.api.utils.Facing.NORTH;
+import static com.walla.rover.api.utils.Facing.WEST;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
-import com.walla.rover.api.utils.Facing;
-
-
 public class RoverPositionTest {
-	
+
 	@Test
-    public void shouldCreatePosition() {
-        final RoverPosition position = new RoverPosition(5, 10, Facing.WEST);
-        
-        Assert.assertEquals(Facing.WEST, position.getFacing());
-        Assert.assertEquals(5, position.getX());
-        Assert.assertEquals(10, position.getY());        
-    }
+	public void shouldCreatePosition() {
+		final RoverPosition position = new RoverPosition(5, 10, WEST);
 
-    @Test
-    public void createPositionToString() {
-        final RoverPosition position = new RoverPosition(0, 6, Facing.NORTH);
-        Assert.assertEquals("(0,6,N)", position.toString());
-    }
+		assertEquals(WEST, position.getFacing());
+		assertEquals(5, position.getX());
+		assertEquals(10, position.getY());
+	}
 
-    @Test
-    public void shouldEquals() {
-        final RoverPosition position1 = new RoverPosition(0, 0, Facing.NORTH);
-        final RoverPosition position2 = new RoverPosition(0, 0, Facing.NORTH);
+	@Test
+	public void createPositionToString() {
+		final RoverPosition position = new RoverPosition(0, 6, NORTH);
+		assertEquals("(0,6,N)", position.toString());
+	}
 
-        Assert.assertEquals(position1, position2);
-        Assert.assertEquals(position1.hashCode(), position2.hashCode());
-    }
+	@Test
+	public void shouldEquals() {
+		final RoverPosition position1 = new RoverPosition(0, 0, NORTH);
+		final RoverPosition position2 = new RoverPosition(0, 0, NORTH);
 
-    // TODO: Not equal
+		assertEquals(position1, position2);
+		assertEquals(position1.hashCode(), position2.hashCode());
+	}
+
+	// TODO: Not equal
 }

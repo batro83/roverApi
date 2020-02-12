@@ -1,34 +1,28 @@
 package com.walla.rover.api.model;
 
 public class Obstacle {
-	
+
 	private int x;
 	private int y;
-	
-	
-	public Obstacle() {		
-	}
 
+	public Obstacle() {
+	}
 
 	public int getX() {
 		return x;
 	}
 
-
 	public void setX(int x) {
 		this.x = x;
 	}
-
 
 	public int getY() {
 		return y;
 	}
 
-
 	public void setY(int y) {
 		this.y = y;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -38,7 +32,6 @@ public class Obstacle {
 		result = prime * result + y;
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -55,6 +48,5 @@ public class Obstacle {
 			return false;
 		return true;
 	}
-
 
 }

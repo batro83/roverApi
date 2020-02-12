@@ -15,13 +15,11 @@ import com.walla.rover.api.model.Obstacle;
 public class Obstacles {
 
 	private final List<Obstacle> list = new ArrayList<>();
-	 
+
 	public Obstacles() {
-    }
+	}
 
 	public List<Obstacle> getList() {
 		return list;
 	}
-
- 
 }

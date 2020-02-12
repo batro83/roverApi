@@ -1,13 +1,12 @@
 package com.walla.rover.api.model;
 
 public class RoverPosition {
-	
+
 	private int x;
-    private int y;
-    private char facing;
-    private Obstacle obstacle;
-        
-    
+	private int y;
+	private char facing;
+	private Obstacle obstacle;
+
 	public RoverPosition() {
 		super();
 	}
@@ -22,53 +21,38 @@ public class RoverPosition {
 	public char getFacing() {
 		return facing;
 	}
-    
-	
+
 	@Override
-    public String toString() {
-		if(obstacle!=null)
+	public String toString() {
+		if (obstacle != null)
 			return String.format("(%d,%d,%s) Obstacle(%d,%d)", x, y, facing, obstacle.getX(), obstacle.getY());
 		else
 			return String.format("(%d,%d,%s)", x, y, facing);
-    }
-
-
+	}
 
 	public int getX() {
 		return x;
 	}
 
-
-
 	public void setX(int x) {
 		this.x = x;
 	}
-
-
 
 	public int getY() {
 		return y;
 	}
 
-
-
 	public void setY(int y) {
 		this.y = y;
 	}
-
-
 
 	public Obstacle getObstacle() {
 		return obstacle;
 	}
 
-
-
 	public void setObstacle(Obstacle obstacle) {
 		this.obstacle = obstacle;
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -80,8 +64,6 @@ public class RoverPosition {
 		result = prime * result + y;
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -106,11 +88,8 @@ public class RoverPosition {
 		return true;
 	}
 
-
-
 	public void setFacing(char facing) {
 		this.facing = facing;
 	}
-    
 
 }

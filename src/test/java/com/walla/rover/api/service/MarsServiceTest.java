@@ -1,108 +1,113 @@
 package com.walla.rover.api.service;
 
+import static com.walla.rover.api.utils.Facing.NORTH;
+import static com.walla.rover.api.utils.Facing.SOUTH;
+import static com.walla.rover.api.utils.Moves.LEFT;
+import static com.walla.rover.api.utils.Moves.RIGHT;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
+
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.walla.rover.api.model.Bounds;
 import com.walla.rover.api.model.RoverPosition;
-import com.walla.rover.api.utils.Facing;
-import com.walla.rover.api.utils.Moves;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @SpringBootTest
 public class MarsServiceTest {
-			
+
 	@InjectMocks
 	private MarsService marsService;
-	
+
 	@Mock
-	private Bounds bounds;	
-	
+	private Bounds bounds;
+
 	@Mock
 	private RoverPosition initialPosition;
-	
-	@Spy	
+
+	@Spy
 	private RoverService roverService;
-		
-	
 
-    @Test
-    public void moveLeftOneMoveFacingNorth_Test_Ok() {
-    	List<Character> movestList = Arrays.asList(Moves.LEFT);
-    	
-    	Mockito.doReturn(10).when(bounds).getMaxX();
-    	Mockito.doReturn(0).when(bounds).getMinX();
-    	Mockito.doReturn(10).when(bounds).getMaxY();
-    	Mockito.doReturn(0).when(bounds).getMinY();
-    	    	
-    	Mockito.doReturn(1).when(initialPosition).getX();
-    	Mockito.doReturn(1).when(initialPosition).getY();
+	@Test
+	public void moveLeftOneMoveFacingNorth_Test_Ok() {
+		List<Character> movestList = Arrays.asList(LEFT);
 
-		Mockito.doReturn(new RoverPosition(10, 1, Facing.NORTH)).when(roverService).left(Mockito.any(), Mockito.any());
-    	    	
-        final RoverPosition finalPosition = marsService.move(movestList);
+		doReturn(10).when(bounds).getMaxX();
+		doReturn(0).when(bounds).getMinX();
+		doReturn(10).when(bounds).getMaxY();
+		doReturn(0).when(bounds).getMinY();
 
-        Assert.assertEquals(new RoverPosition(10, 1, Facing.NORTH), finalPosition);
-    }
-    
-    @Test
-    public void moveLeftOneMoveFacingSouth_Test_Ok() {
-    	List<Character> movestList = Arrays.asList(Moves.LEFT);
-    	
-    	Mockito.doReturn(10).when(bounds).getMaxX();
-    	Mockito.doReturn(0).when(bounds).getMinX();
-    	Mockito.doReturn(10).when(bounds).getMaxY();
-    	Mockito.doReturn(0).when(bounds).getMinY();
-    	    	
-    	Mockito.doReturn(1).when(initialPosition).getX();
-    	Mockito.doReturn(1).when(initialPosition).getY();
+		doReturn(1).when(initialPosition).getX();
+		doReturn(1).when(initialPosition).getY();
 
-		Mockito.doReturn(new RoverPosition(10, 1, Facing.SOUTH)).when(roverService).left(Mockito.any(), Mockito.any());
-    	    	
-        final RoverPosition finalPosition = marsService.move(movestList);
+		doReturn(new RoverPosition(10, 1, NORTH)).when(roverService).left(any(), any());
 
-        Assert.assertEquals(new RoverPosition(10, 1, Facing.SOUTH), finalPosition);
-    }
-    
-    // TODO: TEst left in all facing cases, including with obstacles, and multiple moves
-    
-    @Test
-    public void moveRightOneMoveTest() {
-    	List<Character> movestList = Arrays.asList(Moves.RIGHT);
-    	
-    	Mockito.doReturn(10).when(bounds).getMaxX();
-    	Mockito.doReturn(0).when(bounds).getMinX();
-    	Mockito.doReturn(10).when(bounds).getMaxY();
-    	Mockito.doReturn(0).when(bounds).getMinY();
-    	    	
-    	Mockito.doReturn(1).when(initialPosition).getX();
-    	Mockito.doReturn(1).when(initialPosition).getY();
+		final RoverPosition finalPosition = marsService.move(movestList);
 
-		Mockito.doReturn(new RoverPosition(2, 1, Facing.NORTH)).when(roverService).right(Mockito.any(), Mockito.any());
-    	    	
-        final RoverPosition finalPosition = marsService.move(movestList);
+		assertEquals(new RoverPosition(10, 1, NORTH), finalPosition);
+	}
 
-        Assert.assertEquals(new RoverPosition(2, 1, Facing.NORTH), finalPosition);
-    }
-    
-    // TODO: TEst right in all facing cases, including with obstacles, and multiple moves
-    
-    // TODO: TEst fordward in all facing cases, including with obstacles, and multiple moves
-    
-    // TODO: TEst backward in all facing cases, including with obstacles, and multiple moves
-    
+	@Test
+	public void moveLeftOneMoveFacingSouth_Test_Ok() {
+		List<Character> movestList = Arrays.asList(LEFT);
+
+		doReturn(10).when(bounds).getMaxX();
+		doReturn(0).when(bounds).getMinX();
+		doReturn(10).when(bounds).getMaxY();
+		doReturn(0).when(bounds).getMinY();
+
+		doReturn(1).when(initialPosition).getX();
+		doReturn(1).when(initialPosition).getY();
+
+		doReturn(new RoverPosition(10, 1, SOUTH)).when(roverService).left(any(), any());
+
+		final RoverPosition finalPosition = marsService.move(movestList);
+
+		assertEquals(new RoverPosition(10, 1, SOUTH), finalPosition);
+	}
+
+	// TODO: TEst left in all facing cases, including with obstacles, and multiple
+	// moves
+
+	@Test
+	public void moveRightOneMoveTest() {
+		List<Character> movestList = Arrays.asList(RIGHT);
+
+		doReturn(10).when(bounds).getMaxX();
+		doReturn(0).when(bounds).getMinX();
+		doReturn(10).when(bounds).getMaxY();
+		doReturn(0).when(bounds).getMinY();
+
+		doReturn(1).when(initialPosition).getX();
+		doReturn(1).when(initialPosition).getY();
+
+		doReturn(new RoverPosition(2, 1, NORTH)).when(roverService).right(any(), any());
+
+		final RoverPosition finalPosition = marsService.move(movestList);
+
+		assertEquals(new RoverPosition(2, 1, NORTH), finalPosition);
+	}
+
+	// TODO: TEst right in all facing cases, including with obstacles, and multiple
+	// moves
+
+	// TODO: TEst fordward in all facing cases, including with obstacles, and
+	// multiple moves
+
+	// TODO: TEst backward in all facing cases, including with obstacles, and
+	// multiple moves
 
 }
